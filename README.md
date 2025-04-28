@@ -12,7 +12,7 @@ One example video about installation for your reference:**https://www.youtube.co
 Harshit Gupta, Amir Vahid Dastjerdi , Soumya K. Ghosh, and Rajkumar Buyya, iFogSim: A Toolkit for Modeling and Simulation of Resource Management Techniques in Internet of Things, Edge and Fog Computing Environments, Software: Practice and Experience (SPE), Volume 47, Issue 9, Pages: 1275-1296, ISSN: 0038-0644, Wiley Press, New York, USA, September 2017.
 # Contributors
 Mrs. Sushma S A
-https://sushmasa.sit@gmail.com
+https://sushmasa.sit@gmail.com 
 Ms. Madhunisha E
 madhunishamoorthy@gmail.com
 Dr. Sourav kanti addya
