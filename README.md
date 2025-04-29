@@ -2,39 +2,39 @@
 
 ## Execution Environment
 
-Operation System: Microsoft Windows 10, 64bit.
+- Operation System: Microsoft Windows 10, 64bit.
 
-Physical Memory (RAM) 16.0 GB.
+- Physical Memory (RAM) 16.0 GB.
 
 ### Prerequisites
 
--JDK 1.8- Java Development Kit comprising of Java Runtime Environment to execute java applications.
+- JDK 1.8- Java Development Kit comprising of Java Runtime Environment to execute java applications.
 
--IFogSim simulator for experimental set up and execution.
+- IFogSim simulator for experimental set up and execution.
 
 # Installation of IFogSim Simulator 
 
-Simulator is available in github repository : **https://github.com/Cloudslab/iFogSim**. 
+- Simulator is available in github repository : **https://github.com/Cloudslab/iFogSim**. 
 
-Clone the repository in Eclipse IDE and follow the instructions to run the IFogSim simulator provided in the github link.
+- Clone the repository in Eclipse IDE and follow the instructions to run the IFogSim simulator provided in the github link.
 
-For more details you can refer to the IFogsim Documentation [1].
+- For more details you can refer to the IFogsim Documentation [1].
 
-One example video about installation for your reference:**https://www.youtube.com/watch?v=h_I-fzHY6qQ**
+- One example video about installation for your reference:**https://www.youtube.com/watch?v=h_I-fzHY6qQ**
 
 ### Usage of the repository folder:
 
 Download  DelayPOMCD and keep it in the drive where IFogsim-main is present. The  DelayPOMCD repository contains all executable files related to the proposed and baseline approaches.
 
--> In proposed.java -> The Main file related to the  Proposed Algorithm approach.
+- In proposed.java -> The Main file related to the  Proposed Algorithm approach. 
+In the proposed algorithm we use processing efficiency and deadline parameters as multicriteria parameters to apply into (Criteria Importance Through Intercriteria Correlation) CRITIC model to dertermine weights. These weights are given as input to Technique for Order Preference by Similarity to Ideal Solution (TOPSIS) model to determing ranking of VM nodes and fog nodes. Once the preference list is generated the task nodes are mapped to fog and VM nodes using Deferred Acceptance Algorithm (DAA) to provide stable and optimal solutions.
 
--> DATSfinal.java -> The Main file related to the  DATS baseline approach[2].
+- DATSfinal.java -> The Main file related to the  DATS baseline approach[2].
 
--> post_new.java -> The Main file related to the  POST game theory based approach[3].
+- post_new.java -> The Main file related to the  POST game theory based approach[3].
 
--> Random.java -> The Main file related to the random offloading approach.
+- Random.java -> The Main file related to the random offloading approach.
 
--> In generator_new.java, we can set the various parameters related to Partial Offloading Simulation as specified in Table 2 Simulation parameters in the paper.
 
 ### References
 
@@ -48,29 +48,18 @@ Download  DelayPOMCD and keep it in the drive where IFogsim-main is present. The
 
 ### Contributors
 
--Mrs. Sushma S A
+- Mrs. Sushma S A
 
 https://scholar.google.co.in/citations?user=nW4F_3wAAAAJ&hl=en
 
--Ms. Madhunisha E
+- Ms. Madhunisha E
 
 madhumoorthy@github.io 
 
--Dr. Sourav Kanti addya
+- Dr. Sourav Kanti addya
 
 https://souravkaddya.in/
 
--Dr. Saifur Rahman
-
-saifur.rahman@deakin.edu.au
-
--Dr. Shantanu Pal
-
-https://shantanu.pal@deakin.edu.au
-
--Dr. Chandan Karmarkar
-
-https://karmakar@deakin.edu.au
 
 ### Citation & Acknowledgements
-If any doubts in the code please contact sushmasa[DOT]sit[AT]gmail.com.
+If any doubts in the code please contact sushmasa[DOT]sit[AT]gmail[DOT]com.
