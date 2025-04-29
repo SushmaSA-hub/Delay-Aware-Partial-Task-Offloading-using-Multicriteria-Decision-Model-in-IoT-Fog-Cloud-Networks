@@ -11,8 +11,8 @@ One example video about installation for your reference:**https://www.youtube.co
 ### Usage of the repository folder<br /> 
 Download  DelayPOMCD and keep it in the drive where IFogsim-main is present. The  DelayPOMCD repository contains all executable files related to the proposed and baseline approaches.<br />
 In proposed.java -> The Main file related to the  Proposed Algorithm approach.<br />
-[3]DATSfinal.java -> The Main file related to the  DATS baseline approach.[2]<br />
-[4]post_new.java -> The Main file related to the  POST game theory based approach.[3]<br />
+[3]DATSfinal.java -> The Main file related to the  DATS baseline approach[2].<br />
+[4]post_new.java -> The Main file related to the  POST game theory based approach[3].<br />
 Random.java -> The Main file related to the random offloading approach.<br />  
 In generator_new.java, we can set the various parameters related to Partial Offloading Simulation as specified in Table 2 Simulation parameters in the paper.<br />
 
