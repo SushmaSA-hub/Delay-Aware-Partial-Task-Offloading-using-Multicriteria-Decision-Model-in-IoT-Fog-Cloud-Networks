@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class generator_new {
+public class generator {
     static int no_OfTask;
     static int no_OfHelper;
     static int no_OfVM;
@@ -43,6 +43,7 @@ public class generator_new {
 
     public static void main(String[] args) {
 
+    
         no_OfVM =50;
         no_OfHelper = 200;// Helper nodes
         no_OfTask = 250;// Number of task nodes
@@ -68,274 +69,273 @@ public class generator_new {
         // = new ArrayList<ArrayList<Double> >();//communication delay caused by
         // offloading computation tasks to the helper nodes followed by cloud
 
-     // double[] f_n_choice = new double[] { 0.5e6, 0.6e6, 0.9e6, 0.7e6, 0.8e6};
-        double[] f_n_choice = new double[] { 0.7e6, 0.7e6, 0.7e6, 0.7e6, 0.7e6 };  //heterogeneous parameters
-   //double[] f_m_choice = new double[] { 2.5e9, 1.0e9, 1.8e9, 2.0e9, 1.5e9  };
-       double[] f_m_choice = new double[]{ 1.8e9, 1.8e9, 1.8e9, 1.8e9, 1.8e9 }; //heterogeneous parameters
-        //double[] f_k_choice = new double[] { 30e9, 15e9, 35e9, 25e9, 10e9, 20e9 };
-      //double [] f_k_choice = new double[] {5e9, 10e9, 15e9, 20e9, 25e9, 30e9}; 
-      double[] f_k_choice = new double[] {15e9, 15e9, 15e9, 15e9, 15e9, 15e9}; //heterogeneous parameters
-     //double[] pd_n_choice = new double[]  { 500,800,1000 };
-      double[] pd_n_choice = new double[] {800, 800, 800}; //heterogeneous parameters
-       // double[] bw_choice = new double[] { 15e3, 30e3, 45e3, 60e3, 75e3, 90e3 };
-    //  double[] bw_choice = new double[] { 15e3, 30e3, 45e3, 60e3, 75e3, 90e3 };
-        double[] bw_choice = new double[]  { 45e3, 45e3, 45e3, 45e3, 45e3, 45e3 }; //heterogeneous parameters
-        // generate distance between task node and helper node
-        for (int i = 0; i < no_OfTask; i++) {
-            // generate input size
-            ip_size.add(generateRandomValueInRange((int) 500e3 * 8 ,(int) 5000e3 * 8));// (500, 5000));
-            deadline.add(generateRandomValueInRange(6000,140000));
-            ArrayList<Double> temp = new ArrayList<Double>();
-            for (int j = 0; j < no_OfHelper; j++) {
-                temp.add((double) generateRandomValueInRange(20, 30));
-            }
-            distance_n_m.add(temp);
+   // double[] f_n_choice = new double[] { 1e9, 2e9, 3e9, 4e9, 5e9 };//homogeneous freq _tasks
+     double[] f_n_choice = new double[] { 2e9, 2e9, 2e9, 2e9, 2e9};  //heterogeneous parameters
+  // double[] f_m_choice = new double[] { 1.8e9, 1.8e9, 1.8e9, 1.8e9, 1.8e9 };//homogeneous freq_helper
+      double[] f_m_choice = new double[] { 25e9, 25e9, 25e9, 25e9, 25e9  }; //heterogeneous parameters
+      double[] f_k_choice = new double[] {50e9, 50e9, 50e9, 50e9, 50e9, 50e9}; //heterogeneous parameters
+       // double[] f_k_choice = new double[] {15e9, 15e9, 15e9, 15e9, 15e9, 15e9}; //homogeneous parameters_vm
+  //double[] pd_n_choice = new double[] { 500,800,1000 };//heterogeneous pd
+    double[] pd_n_choice = new double[] {1900,1900,1900}; //homogeneous parameters
+     //  double[] bw_choice = new double[] { 15e3, 30e3, 45e3, 60e3, 75e3, 90e3 };//heterogeneous_bw
+    double[] bw_choice = new double[] { 20e6, 20e6, 20e6, 20e6, 20e6, 20e6 };//homogeneous bw
+   //double[] bw_choice = new double[] {15e3, 30e3, 45e3, 60e3, 75e3, 90e3}; //heterogeneous parameters
+       // generate distance between task node and helper node
+       for (int i = 0; i < no_OfTask; i++) {
+        // generate input size
+        ip_size.add(generateRandomValueInRange((int) 7e6 ,(int) 7e6));// (500, 5000));
+      deadline.add(generateRandomValueInRange(6,8));
+        ArrayList<Double> temp = new ArrayList<Double>();
+        for (int j = 0; j < no_OfHelper; j++) {
+            temp.add((double) generateRandomValueInRange(20, 30));
         }
+        distance_n_m.add(temp);
+    }
 
-        // generate distance between task node and cloud;
-        for (int i = 0; i < no_OfTask; i++) {
-            distance_n_c.add((double) generateRandomValueInRange(50, 60));
-            double p_t = generateRandomValueInRange(200, 200);
-            p_t = p_t / 1000;// milli watt;
-            p_t_n.add(p_t);
-        }
+    // generate distance between task node and cloud;
+    for (int i = 0; i < no_OfTask; i++) {
+        distance_n_c.add((double) generateRandomValueInRange(50, 60));
+        double p_t = generateRandomValueInRange(300, 300);
+        p_t = p_t / 1000;// milli watt;
+        p_t_n.add(p_t);
+    }
 
-        // generate tansmission power for fog nodes
-        for (int i = 0; i < no_OfHelper; i++) {
-            double p_t = generateRandomValueInRange(200, 200);
-           // double p_t=200;//200;
-            p_t = p_t / 1000;// milli watt;
-            p_t_m.add(p_t);
-        }
-        for (int i = 0; i < no_OfTask; i++) {
-            quota.add(generateRandomValueInRange(0, 6));
-            ArrayList<Double> temp = new ArrayList<Double>();
-            for (int j = 0; j < no_OfHelper; j++) {
-                // public static double calculate_r(double bw, int d, double p_t, double N_o)
-                double bw = bw_choice[generateRandomValueInRange(0, 5)];
-                double distance = distance_n_m.get(i).get(j);
-                distance = distance / 1000;// distance in KM
-                temp.add(calculate_r(bw, distance, p_t_n.get(i), 3.98e-21));
-            }
-            r_n_m.add(temp);
-
-            double distance = distance_n_c.get(i);// distance from task node to entire cloud
-            distance = distance / 1000;// distance in KM
+    // generate tansmission power for fog nodes
+    for (int i = 0; i < no_OfHelper; i++) {
+        double p_t = generateRandomValueInRange(300,300);
+       // double p_t=200;//200;
+        p_t = p_t / 1000;// milli watt;
+        p_t_m.add(p_t);
+    }
+    for (int i = 0; i < no_OfTask; i++) {
+        quota.add(generateRandomValueInRange(0, 6));
+        ArrayList<Double> temp = new ArrayList<Double>();
+        for (int j = 0; j < no_OfHelper; j++) {
             // public static double calculate_r(double bw, int d, double p_t, double N_o)
             double bw = bw_choice[generateRandomValueInRange(0, 5)];
-            r_t_n.add(calculate_r(bw, distance, p_t_c, 3.98e-21));
-            r_r_n.add(calculate_r(bw, distance, p_t_c, 3.98e-21));
-            io_r_n.add(generateRandomValueInDouble(0.01, 0.5));
-            pd_n.add(pd_n_choice[generateRandomValueInRange(0, 2)]);
-            f_n.add(f_n_choice[generateRandomValueInRange(0, 4)]);
+            double distance = distance_n_m.get(i).get(j);
+            distance = distance / 1000;// distance in KM
+            temp.add(calculate_r(bw, distance, p_t_n.get(i), 3.98e-21));
         }
-        System.out.println("quota of task nodes" + quota);
-        System.out.println("inp size of task nodes :" + ip_size);
-        System.out.println("Processing density is" + pd_n);
-        System.out.println("-------------------------");
-        System.out.println("frequency of task node is" + f_n);
+        r_n_m.add(temp);
 
-        // =>add frequency of all nodes to the variable
-        for (int i = 0; i < no_OfHelper; i++) {
-            ArrayList<Double> temp = new ArrayList<Double>();
-            for (int j = 0; j < no_OfTask; j++) {
-                // public static double calculate_r(double bw, int d, double p_t, double N_o)
-                double bw = bw_choice[generateRandomValueInRange(0, 5)];
-                bw = bw / 1000;
-                double distance = distance_n_m.get(j).get(i);
-                distance = distance / 1000;
-                temp.add(calculate_r(bw, distance, p_t_m.get(i), 3.98e-21));
-            }
-            r_m_n.add(temp);
+        double distance = distance_n_c.get(i);// distance from task node to entire cloud
+        distance = distance / 1000;// distance in KM
+        // public static double calculate_r(double bw, int d, double p_t, double N_o)
+        double bw = bw_choice[generateRandomValueInRange(0, 5)];
+        r_t_n.add(calculate_r(bw, distance, p_t_c, 3.98e-21));
+        r_r_n.add(calculate_r(bw, distance, p_t_c, 3.98e-21));
+        io_r_n.add(generateRandomValueInDouble(0.01, 0.5));
+        pd_n.add(pd_n_choice[generateRandomValueInRange(0, 2)]);
+        f_n.add(f_n_choice[generateRandomValueInRange(0, 4)]);
+    }
+    System.out.println("quota of task nodes" + quota);
+    System.out.println("inp size of task nodes :" + ip_size);
+    System.out.println("Processing density is" + pd_n);
+    System.out.println("-------------------------");
+    System.out.println("frequency of task node is" + f_n);
 
-            f_m.add(f_m_choice[generateRandomValueInRange(0, 4)]);
+    // =>add frequency of all nodes to the variable
+    for (int i = 0; i < no_OfHelper; i++) {
+        ArrayList<Double> temp = new ArrayList<Double>();
+        for (int j = 0; j < no_OfTask; j++) {
+            // public static double calculate_r(double bw, int d, double p_t, double N_o)
+            double bw = bw_choice[generateRandomValueInRange(0, 5)];
+            bw = bw / 1000;
+            double distance = distance_n_m.get(j).get(i);
+            distance = distance / 1000;
+            temp.add(calculate_r(bw, distance, p_t_m.get(i), 3.98e-21));
         }
-        System.out.println("frequency of helper node is" + f_m);
+        r_m_n.add(temp);
 
-        for (int i = 0; i < no_OfVM; i++) {
-            f_k.add(f_k_choice[generateRandomValueInRange(0, 4)]);
-        }
+        f_m.add(f_m_choice[generateRandomValueInRange(0, 4)]);
+    }
+    System.out.println("frequency of helper node is" + f_m);
 
-        System.out.println("frequency of vm node is" + f_k);
-        System.out.println("-------------------------");
-        // System.out.println("r_m_n" + r_m_n);
-        // System.out.println("r_n_m" + r_n_m);
-        // System.out.println("r_t_n" + r_t_n);
-        // System.out.println("r_r_n" + r_r_n);
-
-        String basePath = "/input/inputSTS/";
-        String filePath;
-        filePath = basePath + "no_OfVM.txt";
-        writeInteger(filePath, no_OfVM);
-        filePath = basePath + "no_OfHelper.txt";
-        writeInteger(filePath, no_OfHelper);
-        filePath = basePath + "no_OfTask.txt";
-        writeInteger(filePath, no_OfTask);
-
-        filePath = basePath + "r_n_m.txt";
-        writeArraylist2(filePath, r_n_m);
-        filePath = basePath + "r_m_n.txt";
-        writeArraylist2(filePath, r_m_n);
-        filePath = basePath + "r_t_n.txt";
-        writeArraylist1(filePath, r_t_n);
-        filePath = basePath + "r_r_n.txt";
-        writeArraylist1(filePath, r_r_n);
-        filePath = basePath + "io_r_n.txt";
-        writeArraylist1(filePath, io_r_n);
-        filePath = basePath + "ip_size.txt";
-        writeArraylist1Int(filePath, ip_size);
-        filePath = basePath + "deadline.txt";
-        writeArraylist1Int(filePath, deadline);
-        filePath = basePath + "pd_n.txt";
-        writeArraylist1(filePath, pd_n);
-        filePath = basePath + "f_m.txt";
-        writeArraylist1(filePath, f_m);
-        filePath = basePath + "f_k.txt";
-        writeArraylist1(filePath, f_k);
-        filePath = basePath + "f_n.txt";
-        writeArraylist1(filePath, f_n);
-        filePath = basePath + "p_t_n.txt";
-        writeArraylist1(filePath, p_t_n);
-        filePath = basePath + "p_t_m.txt";
-        writeArraylist1(filePath, p_t_m);
-        filePath = basePath + "p_t_c.txt";
-        writeArraylist0(filePath, p_t_c);
-        filePath = basePath + "distance_n_m.txt";
-        writeArraylist2(filePath, distance_n_m);
-        filePath = basePath + "distance_n_c.txt";
-        writeArraylist1(filePath, distance_n_c);
-        filePath = basePath + "quota.txt";
-        writeArraylist1Int(filePath, quota);
-
+    for (int i = 0; i < no_OfVM; i++) {
+        f_k.add(f_k_choice[generateRandomValueInRange(0, 4)]);
     }
 
-    // Random number genration
-    public static int getRand(int min, int max) {
-        Random random = new Random();
-        return (int) random.nextInt(max + 1);
-    }
+    System.out.println("frequency of vm node is" + f_k);
+    System.out.println("-------------------------");
+    // System.out.println("r_m_n" + r_m_n);
+    // System.out.println("r_n_m" + r_n_m);
+    // System.out.println("r_t_n" + r_t_n);
+    // System.out.println("r_r_n" + r_r_n);
 
-    public static int generateRandomValueInRange(int min, int max) {
-        Random random = new Random();
-        return random.nextInt(max - min + 1) + min;
-    }
+    String basePath = "/input/inputSTS/";
+    String filePath;
+    filePath = basePath + "no_OfVM.txt";
+    writeInteger(filePath, no_OfVM);
+    filePath = basePath + "no_OfHelper.txt";
+    writeInteger(filePath, no_OfHelper);
+    filePath = basePath + "no_OfTask.txt";
+    writeInteger(filePath, no_OfTask);
 
-    public static double generateRandomValueInDouble(double min, double max) {
-        Random random = new Random();
-        return min + (max - min) * random.nextDouble();
-   }
+    filePath = basePath + "r_n_m.txt";
+    writeArraylist2(filePath, r_n_m);
+    filePath = basePath + "r_m_n.txt";
+    writeArraylist2(filePath, r_m_n);
+    filePath = basePath + "r_t_n.txt";
+    writeArraylist1(filePath, r_t_n);
+    filePath = basePath + "r_r_n.txt";
+    writeArraylist1(filePath, r_r_n);
+    filePath = basePath + "io_r_n.txt";
+    writeArraylist1(filePath, io_r_n);
+    filePath = basePath + "ip_size.txt";
+    writeArraylist1Int(filePath, ip_size);
+    filePath = basePath + "deadline.txt";
+    writeArraylist1Int(filePath, deadline);
+    filePath = basePath + "pd_n.txt";
+    writeArraylist1(filePath, pd_n);
+    filePath = basePath + "f_m.txt";
+    writeArraylist1(filePath, f_m);
+    filePath = basePath + "f_k.txt";
+    writeArraylist1(filePath, f_k);
+    filePath = basePath + "f_n.txt";
+    writeArraylist1(filePath, f_n);
+    filePath = basePath + "p_t_n.txt";
+    writeArraylist1(filePath, p_t_n);
+    filePath = basePath + "p_t_m.txt";
+    writeArraylist1(filePath, p_t_m);
+    filePath = basePath + "p_t_c.txt";
+    writeArraylist0(filePath, p_t_c);
+    filePath = basePath + "distance_n_m.txt";
+    writeArraylist2(filePath, distance_n_m);
+    filePath = basePath + "distance_n_c.txt";
+    writeArraylist1(filePath, distance_n_c);
+    filePath = basePath + "quota.txt";
+    writeArraylist1Int(filePath, quota);
 
-    // Log base n calculation
-    public static double logn(double value, double base) {
-        return Math.log(value) / Math.log(base);
-    }
+}
 
-    // channel gain i.e. path loss calculation
-    /*
-     * @param d ->distance in km
-     * 
-     * @param bw ->Bandwidth in KHz
-     */
-    public static double calculate_channel_gain(double d, double bw) {
-        // formula for path loss to chanel gain conversion is taken from meto paper
-        double path_loss = (20 * logn(d, 10)) + (20 * logn(bw, 10)) + 32.45;
-        return Math.pow(10, -(path_loss / 10));
-    }
+// Random number genration
+public static int getRand(int min, int max) {
+    Random random = new Random();
+    return (int) random.nextInt(max + 1);
+}
 
-    // Data Rate calculation
-    /*
-     * @param bw -> bandwidth in hertz
-     * 
-     * @param g -> channel gain -> calculated using function
-     * 
-     * @param d -> distance needed to calculate path loss
-     * 
-     * @param p_t ->transmitting power
-     * 
-     * @param N_o ->noise power spectral density
-     * 
-     */
-    public static double calculate_r(double bw, double d, double p_t, double N_o) {
-        double g = calculate_channel_gain(d, bw / 1000);
-        double t = logn(1 + ((g * p_t) / (bw * N_o)), 2);
-        return bw * t;
-    }
+public static int generateRandomValueInRange(int min, int max) {
+    Random random = new Random();
+    return random.nextInt(max - min + 1) + min;
+}
 
-    private static void writeArraylist2(String filePath, ArrayList<ArrayList<Double>> values) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
-            // Write numbers to the file
-            for (ArrayList<Double> row : values) {
-                for (int i = 0; i < row.size(); i++) {
-                    writer.print(row.get(i));
-                    if (i < row.size() - 1) {
-                        writer.print(" "); // Use space as a delimiter
-                    }
-                }
-                writer.println(); // Move to the next line
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+public static double generateRandomValueInDouble(double min, double max) {
+    Random random = new Random();
+    return min + (max - min) * random.nextDouble();
+}
 
-    private static void writeArraylist1(String filePath, ArrayList<Double> row) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
-            // Write numbers to the file
+// Log base n calculation
+public static double logn(double value, double base) {
+    return Math.log(value) / Math.log(base);
+}
 
+// channel gain i.e. path loss calculation
+/*
+ * @param d ->distance in km
+ * 
+ * @param bw ->Bandwidth in KHz
+ */
+public static double calculate_channel_gain(double d, double bw) {
+    // formula for path loss to chanel gain conversion is taken from meto paper
+    double path_loss = (20 * logn(d, 10)) + (20 * logn(bw, 10)) + 32.45;
+    return Math.pow(10, -(path_loss / 10));
+}
+
+// Data Rate calculation
+/*
+ * @param bw -> bandwidth in hertz
+ * 
+ * @param g -> channel gain -> calculated using function
+ * 
+ * @param d -> distance needed to calculate path loss
+ * 
+ * @param p_t ->transmitting power
+ * 
+ * @param N_o ->noise power spectral density
+ * 
+ */
+public static double calculate_r(double bw, double d, double p_t, double N_o) {
+    double g = calculate_channel_gain(d, bw / 1000);
+    double t = logn(1 + ((g * p_t) / (bw * N_o)), 2);
+    return bw * t;
+}
+
+private static void writeArraylist2(String filePath, ArrayList<ArrayList<Double>> values) {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+        // Write numbers to the file
+        for (ArrayList<Double> row : values) {
             for (int i = 0; i < row.size(); i++) {
                 writer.print(row.get(i));
                 if (i < row.size() - 1) {
                     writer.print(" "); // Use space as a delimiter
                 }
-                // writer.println(); // Move to the next line
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            writer.println(); // Move to the next line
         }
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 
-    public static void writeInteger(String fileName, int value) {
-        try {
-            // Create a FileWriter and PrintWriter
-            FileWriter fileWriter = new FileWriter(new File(fileName));
-            PrintWriter printWriter = new PrintWriter(fileWriter);
+private static void writeArraylist1(String filePath, ArrayList<Double> row) {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+        // Write numbers to the file
 
-            // Write the integer value to the file
-            printWriter.println(value);
-
-            // Close the PrintWriter to flush the data to the file
-            printWriter.close();
-
-            System.out.println("Integer value has been written to the file.");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void writeArraylist1Int(String filePath, ArrayList<Integer> row) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
-            // Write numbers to the file
-
-            for (int i = 0; i < row.size(); i++) {
-                writer.print(row.get(i));
-                if (i < row.size() - 1) {
-                    writer.print(" "); // Use space as a delimiter
-                }
-                // writer.println(); // Move to the next line
+        for (int i = 0; i < row.size(); i++) {
+            writer.print(row.get(i));
+            if (i < row.size() - 1) {
+                writer.print(" "); // Use space as a delimiter
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            // writer.println(); // Move to the next line
         }
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 
-    private static void writeArraylist0(String filePath, Double row) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
-            // Write numbers to the fil
-            writer.print(row);
+public static void writeInteger(String fileName, int value) {
+    try {
+        // Create a FileWriter and PrintWriter
+        FileWriter fileWriter = new FileWriter(new File(fileName));
+        PrintWriter printWriter = new PrintWriter(fileWriter);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        // Write the integer value to the file
+        printWriter.println(value);
+
+        // Close the PrintWriter to flush the data to the file
+        printWriter.close();
+
+        System.out.println("Integer value has been written to the file.");
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+private static void writeArraylist1Int(String filePath, ArrayList<Integer> row) {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+        // Write numbers to the file
+
+        for (int i = 0; i < row.size(); i++) {
+            writer.print(row.get(i));
+            if (i < row.size() - 1) {
+                writer.print(" "); // Use space as a delimiter
+            }
+            // writer.println(); // Move to the next line
         }
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
+
+private static void writeArraylist0(String filePath, Double row) {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+        // Write numbers to the fil
+        writer.print(row);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 }
