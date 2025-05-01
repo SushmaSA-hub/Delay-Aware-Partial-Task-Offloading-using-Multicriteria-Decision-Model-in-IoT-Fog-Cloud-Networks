@@ -29,11 +29,13 @@ Download  DelayPOMCD and keep it in the drive where IFogsim-main is present. The
 - In proposed.java -> The Main file related to the  Proposed Algorithm approach. 
 In the proposed algorithm we use processing efficiency and deadline parameters as multicriteria parameters to apply into (Criteria Importance Through Intercriteria Correlation) CRITIC model to dertermine weights. These weights are given as input to Technique for Order Preference by Similarity to Ideal Solution (TOPSIS) model to determing ranking of VM nodes and fog nodes. Once the preference list is generated the task nodes are mapped to fog and VM nodes using Deferred Acceptance Algorithm (DAA) to provide stable and optimal solutions.
 
-- DATSfinal.java -> The Main file related to the  DATS baseline approach[2].
+- DATSfinal.java -> The Main file related to the DATS baseline approach[2].
 
-- post_new.java -> The Main file related to the  POST game theory based approach[3].
+- post_new.java -> The Main file related to the POST game theory based approach[3].
 
 - Random.java -> The Main file related to the random offloading approach.
+
+- DISCO-> The main file relato to DISCO baseline approach[4].
 
 
 ### References
@@ -60,6 +62,17 @@ madhumoorthy@github.io
 
 https://souravkaddya.in/
 
+- Saifur Rahman
+  
+saifur.rahman@deakin.edu.au
+
+- Shantanu Pal
+
+shantanu.pal@deakin.edu.au
+
+- Chandan Karmakar
+
+karmakar@deakin.edu.au
 
 ### Citation & Acknowledgements
 If any doubts in the code please contact sushmasa[DOT]sit[AT]gmail[DOT]com.
